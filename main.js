@@ -6,7 +6,6 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const port = process.env.PORT || 8080;
-const io = require("socket.io")(http);
 var cors = require('cors')
 const corsOptions ={
    origin:'*', 
