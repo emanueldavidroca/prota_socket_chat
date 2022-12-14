@@ -6,7 +6,7 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 app.get('/', (req, res) => {
-  res.json({respuesta:"hola"});
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 io.on('connection', (socket) => {
