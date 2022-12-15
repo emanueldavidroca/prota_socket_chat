@@ -21,6 +21,9 @@ io.on('connection', (socket) => {
 socket.on('chat message', (msg) => {
     console.log('message: ' + msg);
   });
+socket.on('salutations', (msg) => {
+    console.log('message: ' + msg);
+  });
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
 });
