@@ -1,10 +1,9 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const server = http.createServer(app);
 const { Server } = require("socket.io");
-//falta
-const io = new Server(server,{
+const httpServer = app.listen(3000, () => {console.log(`Server listening on port 3000`)});
+const io = new Server(httpServer,{
   cors: {
     origin: "https://prota.ar:* "
   }
@@ -18,15 +17,9 @@ app.get("/nuevo",(req,res)=>{
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('chat message', (msg) => {
-      console.log('message: ' + msg);
-    });
-  socket.on('salutations', (msg) => {
-      console.log('message: ' + msg);
-    });
+    console.log('message: ' + msg);
+  });
 });
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
-});
-server.listen(3000, () => {
-  console.log('listening on *:3000');
 });
