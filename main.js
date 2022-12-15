@@ -17,10 +17,10 @@ app.get("/nuevo",(req,res)=>{
 });
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('chat message', (msg) => {
+});
+socket.on('chat message', (msg) => {
     console.log('message: ' + msg);
   });
-});
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
 });
