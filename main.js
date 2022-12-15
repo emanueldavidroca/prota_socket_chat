@@ -4,7 +4,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 //falta
-const io = new Server(httpServer,{
+const io = new Server(server,{
   cors: {
     origin: "https://prota.ar:* "
   }
