@@ -1,30 +1,25 @@
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http,{
+const express = require('express');
+const app = express();
+const http = require('http');
+const { Server } = require("socket.io");
+const httpServer = app.listen(3000, () => {console.log(`Server listening on port 3000`)});
+const io = new Server(httpServer,{
   cors: {
-    origin: "https://prota.ar:* "
+    origin: "https://prota.ar:* "  
   }
 });
-
 app.get("",(req,res)=>{
   io.emit("chat message",req.params.msg);
 });
 app.get("/nuevo",(req,res)=>{
   io.emit("chat message",req.params.msg);
 });
-
-//Whenever someone connects this gets executed
-io.on('connection', function(socket) {
-    console.log('A user connected');
-    socket.on('chat message', (msg) => {
-      console.log('message: ' + msg);
-    });
-   //Whenever someone disconnects this piece of code executed
-   socket.on('disconnect', function () {
-      console.log('A user disconnected');
-   });
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg);
+  });
 });
-
-http.listen(3000, function() {
-   console.log('listening on *:3000');
+io.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
 });
