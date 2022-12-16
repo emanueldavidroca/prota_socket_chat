@@ -25,6 +25,6 @@ io.on('connection', (socket) => {
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
 });
-server.listen(3000, () => {
-  console.log('listening on *:3000');
+server.listen(port, () => {
+  console.log(`listening on *:${port}`);
 });
