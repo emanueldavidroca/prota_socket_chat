@@ -20,7 +20,9 @@ io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('salutations', (msg) => {
     console.log('message: ' + msg);
+    io.emit("message_server",msg);
   });
+
 });
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
