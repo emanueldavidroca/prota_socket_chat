@@ -18,7 +18,7 @@ app.get("/nuevo",(req,res)=>{
 });
 io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('chat message', (msg) => {
+  socket.on('salutations', (msg) => {
     console.log('message: ' + msg);
   });
 });
