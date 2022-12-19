@@ -10,20 +10,25 @@ const io = new Server(server,{
     origin: "https://prota.ar"
   }
 });
-app.get("",(req,res)=>{
-  io.emit("chat message",req.params.msg);
-});
+
 app.get("/nuevo",(req,res)=>{
-  io.emit("chat message",req.params.msg);
+  res.send(io.sockets.emit("chat_message",req.params.msg));
 });
+
 io.on('connection', (socket) => {
+
   console.log('a user connected');
+
   socket.on('salutations', (msg) => {
     console.log('message: ' + msg);
     io.emit("message_server",msg);
   });
 
+  socket.on('chat_message', (msg) => {
+    console.log('message:');
+  });
 });
+
 io.on("connect_error", (err) => {
   console.log(`connect_error due to ${err.message}`);
 });
