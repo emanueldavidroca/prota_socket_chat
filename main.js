@@ -13,7 +13,7 @@ const io = new Server(server,{
 
 app.get("/nuevo",(req,res)=>{
   console.log(req.query.msg);
-  res.send(io.sockets.emit("chat_message",req.query.msg));
+  io.emit("chat_message",req.query.msg);
 });
 
 io.on('connection', (socket) => {
