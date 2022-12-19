@@ -12,6 +12,7 @@ const io = new Server(server,{
 });
 
 app.get("/nuevo",(req,res)=>{
+  console.log(req.params.msg);
   res.send(io.sockets.emit("chat_message",req.params.msg));
 });
 
