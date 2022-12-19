@@ -19,10 +19,10 @@ io.on('connection', (socket) => {
 
   console.log('a user connected');
 
-  socket.on('salutations', (msg) => {
+  /*socket.on('salutations', (msg) => {
     console.log('message: ' + msg);
     io.emit("message_server",msg);
-  });
+  });*/
 
   socket.on('chat_message', (msg) => {
     console.log('message:');
