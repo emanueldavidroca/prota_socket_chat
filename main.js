@@ -21,8 +21,9 @@ app.get("/nuevo",(req,res)=>{
 });
 
 io.on('connection', (socket) => {
+
   socket.join(socket.handshake.query.session_id);
-  console.log('a user connected');
+  console.log('a user connected'+socket.handshake.query.session_id);
   socket.on('chat_message', (msg) => {
     console.log('message:');
   });
