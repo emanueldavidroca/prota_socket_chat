@@ -22,6 +22,7 @@ app.get("/nuevo",(req,res)=>{
 
 io.on('connection', (socket) => {
   socket.on("join",(msg)=>{
+    console.log(msg.session_id);
     socket.join(msg.session_id);
   });
   console.log(socket.handshake.query);
