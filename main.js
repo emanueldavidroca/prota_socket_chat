@@ -10,21 +10,19 @@ const io = new Server(server,{
     origin: "https://prota.ar"
   }
 });
-
 app.get("/nuevo",(req,res)=>{
-  console.log(req.query.msg);
-  io.emit("chat_message",req.query.msg);
+  const data = {
+    message:req.query.idChat,
+    idUser:req.query.idUser,
+    rol:req.query.rol,
+    idSession:req.query.idSession,
+  };
+  io.broadcast.to(data.idSession).emit("chat_message",JSON.stringify(data));
 });
 
 io.on('connection', (socket) => {
 
   console.log('a user connected');
-
-  /*socket.on('salutations', (msg) => {
-    console.log('message: ' + msg);
-    io.emit("message_server",msg);
-  });*/
-
   socket.on('chat_message', (msg) => {
     console.log('message:');
   });
