@@ -11,13 +11,14 @@ const io = new Server(server,{
   }
 });
 app.get("/nuevo",(req,res)=>{
+  let session_id = req.query.session_id;
   const data = {
     message:req.query.idChat,
     idUser:req.query.idUser,
     rol:req.query.rol,
     idSession:req.query.idSession,
   };
-  io.broadcast.to(data.idSession).emit("chat_message",JSON.stringify(data));
+  io.broadcast.to(session_id).emit("chat_message",JSON.stringify(data));
 });
 
 io.on('connection', (socket) => {
