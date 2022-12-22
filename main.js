@@ -14,9 +14,10 @@ app.get("/nuevo",(req,res)=>{
   let session_id = req.query.session_id;
   const data = {
     message:req.query.idChat,
-    idUser:req.query.idUser,
     rol:req.query.rol,
     idSession:req.query.idSession,
+    idChat:req.query.idChat,
+    date:req.query.date
   };
   io.broadcast.to(session_id).emit("chat_message",JSON.stringify(data));
 });
