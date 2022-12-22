@@ -19,6 +19,7 @@ app.get("/nuevo",(req,res)=>{
     idChat:req.query.idChat,
     date:req.query.date
   };
+  console.log(req.query)
   io.broadcast.to(session_id).emit("chat_message",JSON.stringify(data));
 });
 
