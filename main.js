@@ -7,18 +7,19 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server,{
   cors: {
-    origin: "https://prota.ar"
+    origin: "https://prota.ar*"
   }
 });
 app.get("/nuevo",(req,res)=>{
   let session_id = req.query.session_id;
   console.log(req.query);
   const data = {
-    message:req.query.idChat,
+    message:req.query.message,
     rol:req.query.rol,
     idSession:req.query.idSession,
     idChat:req.query.idChat,
-    date:req.query.date
+    date:req.query.date,
+    username:req.query.username
   };
   io.to(session_id).emit("chat_message",JSON.stringify(data));
 });
